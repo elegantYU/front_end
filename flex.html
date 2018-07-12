@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex属性学习</title>
+    <style>
+        .box{
+            width: auto;
+            height: 200px;
+            background: aliceblue;
+            display: flex;
+            /* 
+                定义主轴方向
+                flex-direction: row \\ row-reverse \\ column \\ column-reverse
+                定义换行
+                flex-wrap: nowrap \\ wrap \\ wrap-reverse
+                两属性简写
+                flex-flow: 方向 换行
+             */
+            flex-flow: row nowrap;
+            /* 
+                定义项目在主轴上的对齐方式
+                justify-content: flex-start \\ flex-end \\ center \\ space-between \\ space-around \\ space-evenly每个元素的间距相等 
+                定义项目在交叉轴上的对齐方式
+                align-items: flex-start \\ flex-end \\ center \\ baseline \\ stretch
+                定义多根轴线的对齐方式
+                align-content: flex-start \\ flex-end \\ center \\ space-between \\ space-around \\ stretch
+             */
+             justify-content: space-evenly;
+             align-items: center; 
+        }
+        .item{
+            width: 200px;
+            height: 100px;
+            background: pink;
+            /*  定义项目的排列顺序
+                order: 0;
+                
+                定义项目的放大比例(存在剩余空间则放大) 默认为0 
+                flex-grow: 1;
+                
+                定义项目的缩小比例 默认为1
+                flex-shrink: 0;
+                
+                定义了在分配多余空间前 项目占据的主轴空间 可以设置和宽高一样的值，则项目将占据固定空间
+                flex-basis: auto;
+                
+                是flex-grow flex-shrink flex-basis的简写 默认值为 0 1 auto
+                auto:1 1 auto  none:0 0 auto 
+                建议使用简写
+                flex: grow shrink? \\ basis
+
+                align-self 允许单个项目有与其他项目不一样的对齐方式
+                align-self: auto \\ flex-start \\ flex-end \\ center \\ baseline \\ streth
+             */
+        }
+        .first_dice{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .second_dice{
+            display: flex;
+            justify-content: space-between;
+        }
+        .second_dice .dot:nth-of-type(2){
+            align-self: flex-end;
+        }
+        .thrid_dice{
+            display: flex;
+            justify-content: space-between;
+        }
+        .thrid_dice .dot:nth-of-type(2){
+            align-self: center;
+        }
+        .thrid_dice .dot:nth-of-type(3){
+            align-self: flex-end;
+        }
+        .fourth_dice,.sixth_dice{
+            display: flex;
+            justify-content: space-evenly; 
+        }
+        .fourth_dice .column,.sixth_dice .column{
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-evenly;
+        }
+        .five_dice{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .five_dice .column{
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+        }
+        .five_dice .column:nth-of-type(2){
+            justify-content: center;
+        }
+        *{
+            box-sizing: 100%;
+        }
+        html,body{
+            height: 100%;
+        }
+        .diceBox{
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: center;
+            flex-wrap: wrap;
+            align-content: center;
+            background: linear-gradient(top,#222,#333);
+        }
+        [class$="dice"]{
+            margin: 16px;
+            padding: 4px;
+            width: 104px;
+            height: 104px;
+            background: #d3d3d3;
+            object-fit: contain;
+            box-shadow: 
+                inset 0 5px white,
+                inset 0 -5px #bbb,
+                inset 5px 0 #d7d7d7,
+                inset -5px 0 #d7d7d7;
+            border-radius: 10%;
+        }
+        .dot{
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #333;
+            box-shadow: inset 0 3px #111,inset 0 -3px #555;
+            margin: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="item"></div>
+        <div class="item" style="align-self: flex-end;"></div>
+        <div class="item"></div>
+    </div>
+    <!-- 骰子 -->
+    <div class="diceBox">
+        <div class="first_dice">
+            <div class="dot"></div>
+        </div>
+        <div class="second_dice">
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="thrid_dice">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="fourth_dice">
+            <div class="column">
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="column">
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <div class="five_dice">
+            <div class="column">
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="column">
+                <div class="dot"></div>
+            </div>
+            <div class="column">
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <div class="sixth_dice">
+            <div class="column">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="column">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
