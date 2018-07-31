@@ -40,6 +40,15 @@ console.log(arr.slice(2,8)) // [ 123, 45, 45, 12, 1 ]
 console.log(arr.splice(0,4,132,456,132456,312)) // [ 45243, 321, 123, 45 ]
 console.log(arr) // [ 132, 456, 132456, 312, 45, 12, 1 ]
 
+// filter() 过滤数组
+// 创建一个新数组 新数组中的元素是通过检查指定数组中符合条件的所有元素 不会改变原数组
+var result=[];
+var arr = [1,2,3,1,2,3,14,2,34,2,3];
+arr.filter(function (item,index) {
+    return item == 1 && result.push(index);
+});
+console.log(result);
+
 // 数组内值求和 内值为数字类型
 // for循环
 function sum1(arr) {
