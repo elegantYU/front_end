@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const weakLight = function (light) {
+      this.light = light
+    }
+    weakLight.prototype.press = function () {
+      console.log(`打开强光`);
+      this.light.setState(this.light.strongLight)
+    }
+
+    const strongLight = function (light) {
+      this.light = light
+    }
+    strongLight.prototype.press = function () {
+      console.log(`关灯`);
+      this.light.setState(this.light.offLight);
+    }
+
+    const offLight = function (light) {
+      this.light = light
+    }
+    offLight.prototype.press = function () {
+      console.log(`打开弱光`);
+      this.light.setState(this.light.weakLight);
+    }
+
+    const Light = function () {
+      this.weakLight = new weakLight(this)
+      this.strongLight = new strongLight(this)
+      this.offLight = new offLight(this)
+      this.currentState = this.offLight // 初始状态
+    }
+
+    Light.prototype.init = function () {
+      const btn = document.createElement('button')
+      btn.innerHTML = '按钮'
+      document.body.append(btn)
+      const self = this
+      btn.addEventListener('click', function () {
+        self.currentState.press()
+        /**
+         * self.currentState.press() ==> offLight.press()
+         */
+      })
+    }
+
+    Light.prototype.setState = function (state) {
+      this.currentState = state
+    }
+
+    const light = new Light()
+    light.init()
+  </script>
+</body>
+
+</html>
