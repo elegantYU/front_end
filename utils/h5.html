@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>h5</title>
+  <!-- 微信js -->
+  <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+  <script>
+    wx.config({
+      debug: true,
+      appId: 'id',
+      timestamp: '',
+      nonceStr: '混淆的字符串',
+      signature: '拼接的签名',
+      jsApiList: ['onMenuShareTimeline', '调取的api']
+    })
+    wx.ready(function(){
+      // config 信息验证后执行ready方法
+      wx.onMenuShareAppMessage({
+        title,
+        desc,
+        link,
+        imgUrl
+      })
+    })
+    wx.error(function(err){
+      // config信息验证失败后error函数，签名过期导致验证失败，可通过debug查看，也可以通过返回的err查看
+    })
+  </script>
+  <script>
+    // 根据设备宽度，设置rem大小（默认设计稿750px）
+    const html = document.documentElement
+    const width = html.getBoundingClientRect().width
+    html.style.fontSize = width / 7.5 + 'px'
+  </script>
+</head>
+<body>
+  <script>
+    document.addEventListener("WeixinJSBridgeReady", function () {
+      // 在此可设置音乐等自动播放
+    })
+  </script>
+</body>
+</html>
