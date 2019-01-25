@@ -259,3 +259,9 @@ class newPromise {
     return this
   }
 }
+
+new xPromise((resolve, reject) => {
+  resolve(3)
+}).then(res => {
+  console.log(res)
+})

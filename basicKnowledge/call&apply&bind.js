@@ -56,7 +56,7 @@ Function.prototype.myApply = function (ctx) {
   }
 
   const _this = this
-  const arg = [...arguments].slice(1)
+  const args = [...arguments].slice(1)
 
   // 返回一个函数
   return function F () {
